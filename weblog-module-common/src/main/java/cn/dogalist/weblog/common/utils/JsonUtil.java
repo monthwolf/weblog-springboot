@@ -8,7 +8,7 @@ import lombok.extern.slf4j.Slf4j;
  * @author: monthwolf
  * @url: blog.dogalist.cn
  * @date: 2024-10-21
- * @description: JSON 工具类
+ * @description: JSON 工具类, toJsonString 方法，用于将传入的对象打印成 JSON 字符串
  */
 
 @Slf4j
