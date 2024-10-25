@@ -1,5 +1,24 @@
 # 应用服务 WEB 访问端口
 server:
   port: 8080
+spring:
+  datasource:
+    driver-class-name: com.p6spy.engine.spy.P6SpyDriver # 驱动类使用p6spy的代理驱动，用于打印sql日志
+    url: jdbc:p6spy:mysql://127.0.0.1:3306/weblog?useUnicode=true&characterEncoding=UTF-8&autoReconnect=true&useSSL=false&zeroDateTimeBehavior=convertToNull
+    username: root
+    password: doga123
+    hikari: # HikariCP 连接池配置
+      minimum-idle: 5 # 最小空闲连接数
+      maximum-pool-size: 20 # 最大连接数
+      auto-commit: true # 自动提交
+      idle-timeout: 30000 # 连接空闲30秒后关闭
+      pool-name: Weblog-HikariCP # 连接池名称
+      max-lifetime: 1800000 # 连接的生命周期30分钟
+      connection-timeout: 30000 # 连接超时30秒
+      connection-test-query: SELECT 1 # 测试连接是否有效的SQL语句
+  security: # Spring Security 配置
+    user: # Spring Security 默认用户
+      name: admin
+      password: dog123
 
 

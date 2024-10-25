@@ -27,11 +27,21 @@
             <groupId>cn.dogalist</groupId>
             <artifactId>weblog-module-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cn.dogalist</groupId>
+            <artifactId>weblog-module-jwt</artifactId>
+        </dependency>
         <!-- knife4j -->
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-openapi2-spring-boot-starter</artifactId>
         </dependency>
+        <!-- Spring Security -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

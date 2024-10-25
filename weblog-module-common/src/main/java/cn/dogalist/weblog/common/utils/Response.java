@@ -8,6 +8,7 @@ import lombok.Data;
 
 @Data
 public class Response<T> implements Serializable {
+
     private boolean success = true;
     private String message;
     private String errCode;
@@ -30,13 +31,17 @@ public class Response<T> implements Serializable {
         response.setSuccess(false);
         return response;
     }
+
+
     public static <T> Response<T> fail(String errMsg) {
+        // 携带错误信息
         Response<T> response = new Response<>();
         response.setSuccess(false);
         response.setMessage(errMsg);
         return response;
     }
     public static <T> Response<T> fail(String errCode, String errMsg) {
+        // 携带异常码和错误信息
         Response<T> response = new Response<>();
         response.setSuccess(false);
         response.setMessage(errMsg);
@@ -45,6 +50,7 @@ public class Response<T> implements Serializable {
     }
 
     public static <T> Response<T> fail(BizException bizException) {
+        // 携带业务异常信息
         Response<T> response = new Response<>();
         response.setSuccess(false);
         response.setMessage(bizException.getErrMsg());
@@ -53,6 +59,7 @@ public class Response<T> implements Serializable {
     }
 
     public static <T> Response<T> fail(BaseExceptionInterface baseExceptionInterface) {
+        // 携带基础异常信息
         Response<T> response = new Response<>();
         response.setSuccess(false);
         response.setMessage(baseExceptionInterface.getErrMsg());

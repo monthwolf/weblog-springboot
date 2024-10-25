@@ -76,6 +76,20 @@ public class TestController {
 
         return Response.success(user);
     }
+    // 测试admin登录安全
+    @PostMapping("/admin/test4")
+    @ApiOperationLog(description = "测试")
+    @ApiOperation(value = "测试admin登录安全")
+    public Response test4(@RequestBody @Validated User user) {
+        // 打印入参
+        log.info(JsonUtil.toJsonString(user));
 
+        // 设置三种日期字段值
+        user.setCreateTime(LocalDateTime.now());
+        user.setUpdateDate(LocalDate.now());
+        user.setTime(LocalTime.now());
+
+        return Response.success(user);
+    }
 
 }

@@ -16,6 +16,10 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2WebMvc;
 @EnableSwagger2WebMvc
 @Profile("dev") // 只在 dev 环境中开启
 public class Knife4jConfig {
+    /**
+     * 构建 api文档的详细信息函数
+     * @return
+     */
     @Bean("webApi")
     public Docket createApiDoc() {
         Docket docket = new Docket(DocumentationType.SWAGGER_2)

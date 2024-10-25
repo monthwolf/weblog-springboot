@@ -15,6 +15,11 @@ import lombok.extern.slf4j.Slf4j;
 public class JsonUtil {
     private static final ObjectMapper INSTANCE = new ObjectMapper();
 
+    /**
+     * 将传入的对象打印成 JSON 字符串
+     * @param obj
+     * @return
+     */
     public static String toJsonString(Object obj) {
         try {
             return INSTANCE.writeValueAsString(obj);
