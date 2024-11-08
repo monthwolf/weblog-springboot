@@ -6,7 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 登录响应VO
+ * 登录响应VO（视图对象）
  */
 @Data
 @AllArgsConstructor

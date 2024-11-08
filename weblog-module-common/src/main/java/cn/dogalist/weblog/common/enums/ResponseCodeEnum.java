@@ -21,10 +21,16 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     // ----------- 参数异常状态码 -----------
     PARAM_NOT_VALID("10001", "参数错误"),
 
+    // ----------- 权限异常状态码 -----------
+    FORBIDDEN("20006", "演示账号仅支持查询操作！"),
+
     // ----------- 用户异常状态码 -----------
     LOGIN_FAIL("20000", "登录失败"),
     USERNAME_OR_PWD_ERROR("20001", "用户名或密码错误"),
-    UNAUTHORIZED("20002","无权限访问，请先登录！" );
+    UNAUTHORIZED("20002","无权限访问，请先登录！" ),
+    USERNAME_NOT_FOUND("20003", "该用户不存在"),
+    PASSWORD_ERROR("20005", "用户密码错误"),
+    PASSWORD_NOT_CHANGE("20006","新旧密码不能相等" );
     private String errCode;
     private String errMsg;
 

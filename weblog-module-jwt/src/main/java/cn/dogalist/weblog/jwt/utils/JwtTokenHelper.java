@@ -91,6 +91,7 @@ public class JwtTokenHelper implements InitializingBean {
 
     /**
      * 校检token是否可用
+     * 
      * @param token
      * @return
      */
@@ -99,8 +100,10 @@ public class JwtTokenHelper implements InitializingBean {
         // SignatureException、MalformedJwtException、UnsupportedJwtException、IllegalArgumentException、ExpiredJwtException
         jwtParser.parseClaimsJws(token);
     }
+
     /**
      * 解析token中的用户名
+     * 
      * @param token
      * @return
      */

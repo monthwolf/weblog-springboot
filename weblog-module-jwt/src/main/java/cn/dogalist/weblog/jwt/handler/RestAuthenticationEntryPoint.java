@@ -25,6 +25,7 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
 
     /**
      * 覆写认证失败处理器
+     * 
      * @param request
      * @param response
      * @param authException
@@ -32,7 +33,8 @@ public class RestAuthenticationEntryPoint implements AuthenticationEntryPoint {
      * @throws ServletException
      */
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+            AuthenticationException authException) throws IOException, ServletException {
         log.warn("用户未登录访问受保护的资源", authException);
         if (authException instanceof InsufficientAuthenticationException) {
             ResultUtil.fail(response, HttpStatus.UNAUTHORIZED.value(), Response.fail(ResponseCodeEnum.UNAUTHORIZED));

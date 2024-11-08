@@ -19,7 +19,9 @@ public class PasswordEncoderConfig {
     // 测试BCrypt加密密码
     public static void main(String[] args) {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        System.out.println(encoder.encode("dog123"));
+        System.out.println(encoder.encode("test"));
+        // 解密
+        System.out.println(encoder.matches("dog123", "$2a$10$ouEDxKnsqGexOI8lByF5I.Y9urOznf2OsiS1xzYX3xjxmskZGZ7Ya"));
     }
 
 }

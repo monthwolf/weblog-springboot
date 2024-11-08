@@ -42,6 +42,7 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 
     /**
      * 认证过滤器
+     * 
      * @param request
      * @param response
      * @param filterChain
@@ -49,7 +50,8 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
      * @throws IOException
      */
     @Override
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
+            throws ServletException, IOException {
         // 从请求头中获取Authorization字段
         String authorization = request.getHeader("Authorization");
         // 判断值是否以Bearer开头
@@ -62,26 +64,31 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
                 // 校检token是否可用
                 try {
                     jwtTokenHelper.validateToken(token);
-                } catch (SignatureException | MalformedJwtException | UnsupportedJwtException |
-                         IllegalArgumentException e) {
-                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("token不可用"));
+                } catch (SignatureException | MalformedJwtException | UnsupportedJwtException
+                        | IllegalArgumentException e) {
+                    authenticationEntryPoint.commence(request, response,
+                            new AuthenticationServiceException("token不可用"));
                     return;
                 } catch (ExpiredJwtException e) {
-                    authenticationEntryPoint.commence(request, response, new AuthenticationServiceException("token已过期"));
+                    authenticationEntryPoint.commence(request, response,
+                            new AuthenticationServiceException("token已过期"));
                     return;
                 }
                 // 从token中获取用户名
                 String username = jwtTokenHelper.getUsernameFromToken(token);
                 // 判断用户名是否为空且用户是否认证
-                if (StringUtils.isNotBlank(username) && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
+                if (StringUtils.isNotBlank(username)
+                        && Objects.isNull(SecurityContextHolder.getContext().getAuthentication())) {
                     // 从数据库中获取用户信息
                     UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
                     // 将用户信息放入 authentication
-                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
+                    UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
+                            userDetails, null, userDetails.getAuthorities());
                     // 将请求信息放入 authentication
                     authentication.setDetails(new WebAuthenticationDetails(request));
-                    // 将 authentication 放入上下文
+                    // 将 authentication 存入 ThreadLocal, 方便后续获取用户信息
+                    log.info(authorization);
                     SecurityContextHolder.getContext().setAuthentication(authentication);
                 }
             }
