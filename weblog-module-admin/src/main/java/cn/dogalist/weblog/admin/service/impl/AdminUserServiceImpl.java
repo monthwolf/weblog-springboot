@@ -15,6 +15,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,8 +71,18 @@ public class AdminUserServiceImpl implements AdminUserService {
         List<UserRoleDO> userRoleDO = userRoleMapper.findByUsername(username);
         // 封装成字符串数组
         String[] roleArr = userRoleDO.stream().map(UserRoleDO::getRole).collect(Collectors.toList()).toArray(new String[userRoleDO.size()]);
+        // 获取用户
+        UserDO userDO = userMapper.findByUsername(username);
+        String email = userDO.getEmail();
+        Boolean active = userDO.getIsActive();
+        // 格式化日期
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
+                .withZone(ZoneId.of("Asia/Shanghai"));
+        String createTimeStr = formatter.format(userDO.getCreateTime().toInstant());
 
-        return Response.success(FindUserInfoRspVO.builder().username(username).roles(roleArr).build());
+
+
+        return Response.success(FindUserInfoRspVO.builder().username(username).roles(roleArr).email(email).isActive(active).createTime(createTimeStr).build());
     }
 
 }

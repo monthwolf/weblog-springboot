@@ -8,26 +8,26 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-
+import java.time.LocalDateTime;
 
 /**
- * @Description: 用户表
+ * @Author: dogalist
+ * @Description: 标签
  */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 @Builder
-@TableName("t_user")
-public class UserDO {
+@NoArgsConstructor
+@AllArgsConstructor
+@TableName("t_tag")
+
+public class TagDO {
     @TableId(type = IdType.AUTO)
     private Long id;
-    private String username;
-    private String password;
-    private Date createTime;
-    private Date updateTime;
-    private Boolean isDeleted;
-    private String email;
-    private Boolean isActive;
 
+    private String name;
+    private String color;
+    private LocalDateTime createTime;
+    private LocalDateTime updateTime;
+    private Boolean status;
+    private Boolean isDeleted;
 }
