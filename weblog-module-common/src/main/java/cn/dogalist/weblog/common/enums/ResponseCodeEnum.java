@@ -20,7 +20,7 @@ public enum ResponseCodeEnum implements BaseExceptionInterface {
     CATEGORY_NAME_IS_EXISTED("20001","该分类已存在，请勿重复添加！" ),
     CATEGORY_NOT_EXISTED("20002","该分类不存在！"),
     TAG_NOT_EXISTED("20003","该标签不存在！" ),
-
+    FILE_UPLOAD_FAILED("20004","文件上传失败！" ),
 
     // ----------- 3-参数异常状态码 -----------
     PARAM_NOT_VALID("30000", "参数错误"),
