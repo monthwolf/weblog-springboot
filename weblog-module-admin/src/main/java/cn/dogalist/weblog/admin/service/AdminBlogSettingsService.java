@@ -10,4 +10,10 @@ public interface AdminBlogSettingsService {
      * @return
      */
     Response updateBlogSettings(UpdateBlogSettingsReqVO updateBlogSettingsReqVO);
+
+    /**
+     * 查询博客设置信息
+     * @return
+     */
+    Response findBlogSettings();
 }

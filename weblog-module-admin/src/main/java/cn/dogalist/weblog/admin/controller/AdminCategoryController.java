@@ -48,7 +48,7 @@ public class AdminCategoryController {
         return adminCategoryService.deleteCategory(deleteCategoryReqVO);
     }
 
-    @GetMapping("/category/select/list")
+    @PostMapping("/category/select/list")
     @ApiOperation(value = "获取分类下拉列表")
     @ApiOperationLog(description = "获取分类下拉列表")
     public Response findCategorySelectList() {

@@ -51,7 +51,7 @@ public class AdminTagController {
         return adminTagService.changeTagStatus(changeTagStatusReqVO);
     }
 //
-    @GetMapping("/tag/select/list")
+    @PostMapping("/tag/select/list")
     @ApiOperation(value = "获取标签下拉列表")
     @ApiOperationLog(description = "获取标签下拉列表")
     public Response findTagSelectList() {
